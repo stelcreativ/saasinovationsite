@@ -1,6 +1,9 @@
 import { Navbar } from './components/Navbar';
 import { ValueMatrix } from './components/ValueMatrix';
 import { TestimonialTray } from './components/Testimonials';
+import { Pricing } from './components/Pricing';
+import { FaqSection } from './components/FaqSection';
+import { Footer } from './components/Footer';
 import './index.css'
 
 function App() {
@@ -30,6 +33,15 @@ function App() {
 
       {/* 2. Infinite Testimonial Sliding Tray Section */}
       <TestimonialTray />
+
+      {/* 3. Segmented Pricing Component */}
+      <Pricing />
+
+      {/* 4. Complete Accordion FAQ Section */}
+      <FaqSection />
+
+      {/* 5. Footer here at the bottom of the root wrapper */}
+      <Footer />
 
     </div>
   )
