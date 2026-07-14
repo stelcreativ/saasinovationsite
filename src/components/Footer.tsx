@@ -77,7 +77,7 @@ export const Footer: React.FC = () => {
                     <ul className="space-y-2.5 text-xs font-semibold text-slate-400">
                         <li className="text-slate-500">Node Status: <span className="text-emerald-500 font-mono">Operational</span></li>
                         <li><a href="mailto:support@nexus.io" className="hover:text-white transition-colors">support@inovativesaas.io</a></li>
-                        <li><a href="tel:+15550199" className="hover:text-white transition-colors">+1 (555) 0199</a></li>
+                        <li><a href="tel:+15550199905555" className="hover:text-white transition-colors">+1 (555) 0199</a></li>
                         <li><a href="#docs" className="hover:text-white transition-colors flex items-center gap-1.5"><HelpCircle className="w-3.5 h-3.5 text-slate-500" /> Developer Readme</a></li>
                     </ul>
                 </div>
