@@ -4,6 +4,7 @@ import { TestimonialTray } from './components/Testimonials';
 import { Pricing } from './components/Pricing';
 import { FaqSection } from './components/FaqSection';
 import { Footer } from './components/Footer';
+import { ContactForm } from './components/ContactForm';
 import './index.css'
 
 function App() {
@@ -40,7 +41,10 @@ function App() {
       {/* 4. Complete Accordion FAQ Section */}
       <FaqSection />
 
-      {/* 5. Footer here at the bottom of the root wrapper */}
+      {/* 5. API Contact form container */}
+      <ContactForm />
+
+      {/* 6. Footer here at the bottom of the root wrapper */}
       <Footer />
 
     </div>
