@@ -44,7 +44,7 @@ export const ContactForm: React.FC = () => {
             await
                 axios.post
                     (
-                        `https://hsforms.com{HUBSPOT_PORTAL_ID}/${HUBSPOT_FORM_ID}`,
+                        `https://hsforms.com${HUBSPOT_PORTAL_ID}/${HUBSPOT_FORM_ID}`,
                         payload,
                         { headers: { 'Content-Type': 'application/json' } }
                     );
