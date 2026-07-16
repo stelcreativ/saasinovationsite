@@ -16,8 +16,8 @@ export const ContactForm: React.FC = () => {
     const [errorMessage, setErrorMessage] = useState('');
 
     // 2. HubSpot Endpoint Parameters (Replace these placeholders with your real IDs)
-    const HUBSPOT_PORTAL_ID = 'YOUR_HUBSPOT_PORTAL_ID';
-    const HUBSPOT_FORM_ID = 'YOUR_HUBSPOT_FORM_ID';
+    const HUBSPOT_PORTAL_ID = '148889399';
+    const HUBSPOT_FORM_ID = 'https://2gn7sn.share-eu1.hsforms.com/2yiGJMPTyQ4SuHX6VtnX7Qg';
 
     const handleSubmit = async (e: React.FormEvent) => {
         e.preventDefault();
@@ -30,7 +30,7 @@ export const ContactForm: React.FC = () => {
                 { name: 'firstname', value: formData.firstName },
                 { name: 'lastname', value: formData.lastName },
                 { name: 'email', value: formData.email },
-                { name: 'company', value: formData.company },
+                { name: 'company name', value: formData.company },
                 { name: 'message', value: formData.message }
             ],
             context: {
