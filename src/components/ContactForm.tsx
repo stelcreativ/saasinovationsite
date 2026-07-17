@@ -3,6 +3,11 @@ import { Send, Loader2, CheckCircle2, ShieldAlert } from 'lucide-react';
 import axios from 'axios';
 
 export const ContactForm: React.FC = () => {
+
+
+    const HUBSPOT_PORTAL_ID = import.meta.env.VITE_HUBSPOT_PORTAL_ID;
+    const HUBSPOT_FORM_ID = import.meta.env.VITE_HUBSPOT_FORM_ID;
+
     // 1. Local Input State Management
     const [formData, setFormData] = useState({
         firstName: '',
@@ -16,15 +21,24 @@ export const ContactForm: React.FC = () => {
     const [errorMessage, setErrorMessage] = useState('');
 
     // 2. HubSpot Endpoint Parameters (Replace these placeholders with your real IDs)
-    const HUBSPOT_PORTAL_ID = '148889399';
-    const HUBSPOT_FORM_ID = 'https://2gn7sn.share-eu1.hsforms.com/2yiGJMPTyQ4SuHX6VtnX7Qg';
 
     const handleSubmit = async (e: React.FormEvent) => {
         e.preventDefault();
         setStatus('submitting');
         setErrorMessage('');
 
-        // 3. Format payload strictly into the HubSpot API schema structure
+        // 3. Early validation guard clause to verify parameters before dispatching network packages
+        if (!HUBSPOT_PORTAL_ID || !HUBSPOT_FORM_ID) {
+            console.warn("HubSpot API Error: Credentials are empty. Verify your .env parameters layout.");
+            setErrorMessage("System configuration parameters missing. Verification required.");
+            setStatus('error');
+            return;
+        }
+
+        setStatus('submitting');
+        setErrorMessage('');
+
+        // 4. Format payload strictly into the HubSpot API schema structure
         const payload = {
             fields: [
                 { name: 'firstname', value: formData.firstName },
@@ -40,11 +54,11 @@ export const ContactForm: React.FC = () => {
         };
 
         try {
-            // 4. Dispatch AJAX tracking post directly to HubSpot's global submission node
+            // 5. Dispatch AJAX tracking post directly to HubSpot's global submission node
             await
                 axios.post
                     (
-                        `https://api.hsforms.com.eu/submissions/v3/integration/submit/${HUBSPOT_PORTAL_ID}/${HUBSPOT_FORM_ID}`,
+                        `https://api-eu1.hsforms.com/submissions/v3/integration/submit/${import.meta.env.VITE_HUBSPOT_PORTAL_ID}/${import.meta.env.VITE_HUBSPOT_FORM_ID}`,
                         payload,
                         { headers: { 'Content-Type': 'application/json' } }
                     );
@@ -52,7 +66,7 @@ export const ContactForm: React.FC = () => {
             setStatus('success');
             setFormData({ firstName: '', lastName: '', email: '', company: '', message: '' });
         } catch (error: any) {
-            console.error('HubSpot integration pipeline error:', error);
+            console.error('HubSpot Server Error Output:', error.response?.data);
             setErrorMessage(error.response?.data?.message || 'Transmission failed. Please verify API parameters.');
             setStatus('error');
         }
